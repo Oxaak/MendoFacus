@@ -1,0 +1,230 @@
+/* --- Sección: Página Introductoria del Test --- */
+.contenido-centrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+}
+
+.contenedor-icono-test {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #2b4f6b, #326955);
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icono-check-svg {
+    width: 70px;
+    height: 70px;
+}
+
+.subtitulo-test {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.descripcion-test {
+    font-size: 15px;
+    color: #111111;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.4;
+    max-width: 400px;
+}
+
+.caja-puntos-clave {
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    margin-bottom: 32px;
+    cursor: default;
+}
+
+.caja-puntos-clave:hover {
+    transform: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.lista-puntos-clave {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #111111;
+}
+
+.lista-puntos-clave li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.lista-puntos-clave li:last-child {
+    margin-bottom: 0;
+}
+
+.contenedor-boton-centrado {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.boton-redondeado {
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 14px 32px;
+    text-align: center;
+}
+
+/* --- Sección: Cabecera del Cuestionario y Progreso --- */
+.cabecera-test {
+    background-color: #ffffff;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cabecera-test-superior {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.boton-volver {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111111;
+    text-decoration: none;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.boton-volver:hover {
+    transform: translateX(-2px);
+}
+
+.icono-volver-svg {
+    width: 24px;
+    height: 24px;
+    stroke: #000000;
+}
+
+.cabecera-test-titulo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111111;
+    margin: 0;
+}
+
+.contenedor-barra-progreso {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    border: 1px solid #111111;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.barra-progreso-avance {
+    height: 100%;
+    background-color: #4a6e8f;
+    transition: width 0.3s ease;
+}
+
+.divisores-progreso {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+}
+
+.divisores-progreso span {
+    flex: 1;
+    height: 100%;
+    border-right: 1px solid #111111;
+}
+
+.divisores-progreso span:last-child {
+    border-right: none;
+}
+
+/* --- Sección: Preguntas y Opciones del Test --- */
+.titulo-pregunta {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.3;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-family: inherit;
+}
+
+.descripcion-pregunta {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    font-family: inherit;
+}
+
+.contenedor-opciones-test {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.boton-opcion-test {
+    display: flex;
+    width: 100%;
+    min-height: 84px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-opcion-test:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.opcion-franja-lateral {
+    width: 56px;
+    background-color: #4a6e8f;
+    flex-shrink: 0;
+}
+
+.opcion-bloque-contenido {
+    flex-grow: 1;
+    background-color: #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+}
+
+.opcion-texto {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+    font-family: inherit;
+}

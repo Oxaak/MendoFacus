@@ -1,0 +1,8 @@
+GEMINI.md
+
+.DS_Store
+Thumbs.db
+*.log
+.env
+
+node_modules/
