@@ -10,39 +10,30 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+
 const poolMySQL = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
+    port: process.env.MYSQL_PORT,
     password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
+    database: process.env.MYSQL_DATABASE,
+    waitForConnections: true,
+    connectionLimit: 10
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'pages', 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.post('/api/users', async (req, res) => {
-    const { nombre, apellido, email, edad } = req.body;
-
+app.get('/api/faculties', async (req, res) => {
     try {
-        const [result] = await poolMySQL.execute(
-            'INSERT INTO users (nombre, apellido, email, edad) VALUES (?, ?, ?, ?)',
-            [nombre, apellido, email, edad]
-        );
-        res.json({
-            mensaje: 'Usuario guardado en MySQL',
-            id: result.insertId
-        });
+        const [rows] = await poolMySQL.execute('SELECT nombre, gestion, ubicacion FROM faculties');
+        res.json(rows);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: 'Fallo al obtener facultades: ' + error.message });
     }
 });
 
-app.get('/api/users', async (req, res) => {
-    const [rows] = await poolMySQL.execute('SELECT * FROM users');
-    res.json(rows);
-});
-
 app.listen(PORT, () => {
-    console.log(` Servidor listo en http://localhost:${PORT}`);
+    console.log(`Servidor listo en http://localhost:${PORT}`);
 });
