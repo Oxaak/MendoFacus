@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - MendoFacus</title>
+    <meta name="description" content="Crea tu cuenta en MendoFacus para guardar tu perfil y comparar facultades.">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/login.js" defer></script>
+</head>
+
+<body>
+
+    <div class="Registro">
+        <header class="cabecera-registro">
+            <h1 class="cabecera-registro-titulo">Registrate</h1>
+        </header>
+
+        <main class="contenido-principal">
+
+            <form id="formularioRegistro" class="contenedor-registro" autocomplete="off">
+
+                <div class="grupo-entrada">
+                    <label for="nombreUsuario" class="etiqueta-entrada">Nombre de usuario</label>
+                    <input type="text" id="nombre" name="nombre" class="input-pildora" placeholder="Escribe tu usuario"
+                        required>
+                </div>
+
+                <div class="grupo-entrada">
+                    <label for="contraseña" class="etiqueta-entrada">Contraseña</label>
+                    <input type="password" id="contraseña" name="contraseña" class="input-pildora"
+                        placeholder="Escribe tu contraseña" required>
+                </div>
+
+                <div class="grupo-entrada">
+                    <label for="email" class="etiqueta-entrada">Gmail</label>
+                    <input type="gmail" id="email" name="email" class="input-pildora" placeholder="ejemplo@gmail.com"
+                        required>
+                </div>
+
+            </form>
+
+            <label class="contenedor-checkbox" for="terminosCondiciones">
+                <input type="checkbox" id="terminosCondiciones" name="terminosCondiciones" class="checkbox-terminos"
+                    required>
+                <span class="check-personalizado"></span>
+                Terminos y condiciones
+            </label>
+
+            <div class="contenedor-boton-registro">
+                <button type="submit" form="formularioRegistro" class="boton-registro">registrarse</button>
+            </div>
+        </main>
+
+        <nav class="navegacion-inferior-fija">
+            <a href="../index.html" class="enlace-nav">Inicio</a>
+            <a href="buscar.html" class="enlace-nav">Buscar</a>
+            <a href="comparar.html" class="enlace-nav">comparar</a>
+            <a href="perfil.html" class="enlace-nav">Perfil</a>
+        </nav>
+    </div>
+
+
+</body>
+
+</html>

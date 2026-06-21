@@ -1,4 +1,4 @@
-/* --- Sección: Reset y Estilos Globales --- */
+
 *,
 *::before,
 *::after {
@@ -200,4 +200,173 @@ body {
 .enlace-nav.activo {
     color: #0056b3;
     font-weight: 600;
+}
+
+
+.Registro {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.cabecera-registro {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #dcdcdc;
+    z-index: 100;
+}
+
+.cabecera-registro-titulo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111111;
+}
+
+.contenedor-registro {
+    background-color: #f2f4f7;
+    border-radius: 28px;
+    padding: 24px;
+    margin: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.grupo-entrada {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.etiqueta-entrada {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-left: 4px;
+}
+
+.input-pildora {
+    background-color: #e5e9f0;
+    border: 2px solid #000000;
+    border-radius: 9999px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #000000;
+    outline: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.input-pildora:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 24px 24px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    font-weight: 500;
+    color: #111111;
+}
+
+.checkbox-terminos {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.check-personalizado {
+    height: 20px;
+    width: 20px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox-terminos:checked ~ .check-personalizado {
+    background-color: #000000;
+}
+
+.check-personalizado::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-terminos:checked ~ .check-personalizado::after {
+    display: block;
+}
+
+.contenedor-boton-registro {
+    padding: 0 20px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.boton-registro {
+    background-color: #4a6e8f;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.boton-registro:hover {
+    background-color: #3b5a76;
+}
+
+.boton-registro:active {
+    transform: scale(0.98);
+}
+
+.navegacion-inferior-fija {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+    display: table;
+    width: 100%;
+    max-width: 480px;
+    table-layout: fixed;
+    z-index: 100;
 }
