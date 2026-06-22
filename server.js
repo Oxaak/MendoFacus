@@ -25,14 +25,47 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/api/faculties', async (req, res) => {
+app.get('/api/facultades', async (req, res) => {
     try {
-        const [rows] = await poolMySQL.execute('SELECT nombre, gestion, ubicacion FROM faculties');
+        const [rows] = await poolMySQL.execute('SELECT nombre, gestion, ubicacion FROM facultades');
         res.json(rows);
     } catch (error) {
         res.status(500).json({ error: 'Fallo al obtener facultades: ' + error.message });
     }
 });
+
+// --- Endpoints de Cuestionario ---
+
+app.get('/api/obtener-preguntas', async (req, res) => {
+    try {
+        const [preguntas] = await poolMySQL.execute('SELECT id, orden, titulo, descripcion FROM preguntas ORDER BY orden');
+        const [opciones] = await poolMySQL.execute('SELECT id, pregunta_id, texto_opcion, perfil_asociado FROM opciones');
+
+        const resultado = preguntas.map(pregunta => {
+            const opcionesPregunta = opciones
+                .filter(opcion => opcion.pregunta_id === pregunta.id)
+                .map(opcion => ({
+                    id: opcion.id,
+                    texto_opcion: opcion.texto_opcion,
+                    perfil_asociado: opcion.perfil_asociado
+                }));
+
+            return {
+                id: pregunta.id,
+                orden: pregunta.orden,
+                titulo: pregunta.titulo,
+                descripcion: pregunta.descripcion,
+                opciones: opcionesPregunta
+            };
+        });
+
+        res.json(resultado);
+    } catch (error) {
+        res.status(500).json({ error: 'Fallo al obtener preguntas: ' + error.message });
+    }
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor listo en http://localhost:${PORT}`);
