@@ -7,6 +7,7 @@
     <title>Pregunta 1 - Test Vocacional</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/test.css">
+    <script src="../js/cuestionario.js" defer></script>
 </head>
 
 <body>
@@ -19,11 +20,11 @@
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </a>
-            <h1 class="cabecera-test-titulo">Pregunta 1/10</h1>
+            <h1 class="cabecera-test-titulo" id="texto-progreso">Pregunta 1/10</h1>
         </div>
 
         <div class="contenedor-barra-progreso">
-            <div class="barra-progreso-avance" style="width: 10%;"></div>
+            <div class="barra-progreso-avance" id="barra-progreso" style="width: 10%;"></div>
             <div class="divisores-progreso">
                 <span></span><span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span><span></span>
@@ -33,43 +34,14 @@
 
     <main class="contenido-principal">
 
-        <h2 class="titulo-pregunta">¿Qué área de estudio o trabajo te atrae más de forma natural?</h2>
+        <h2 class="titulo-pregunta" id="titulo-pregunta-dom">¿Qué área de estudio o trabajo te atrae más de forma natural?</h2>
 
-        <p class="descripcion-pregunta">
+        <p class="descripcion-pregunta" id="descripcion-pregunta-dom">
             Identifica tu inclinación espontánea hacia grandes campos del conocimiento antes de profundizar en detalles
             técnicos.
         </p>
 
-        <div class="contenedor-opciones-test">
-
-            <a class="boton-opcion-test">
-                <div class="opcion-franja-lateral"></div>
-                <div class="opcion-bloque-contenido">
-                    <span class="opcion-texto">Ciencias exactas y tecnología</span>
-                </div>
-            </a>
-
-            <a class="boton-opcion-test">
-                <div class="opcion-franja-lateral"></div>
-                <div class="opcion-bloque-contenido">
-                    <span class="opcion-texto">Negocio, leyes y administración</span>
-                </div>
-            </a>
-
-            <a class="boton-opcion-test">
-                <div class="opcion-franja-lateral"></div>
-                <div class="opcion-bloque-contenido">
-                    <span class="opcion-texto">Ciencias de la salud y humanidades</span>
-                </div>
-            </a>
-
-            <a class="boton-opcion-test">
-                <div class="opcion-franja-lateral"></div>
-                <div class="opcion-bloque-contenido">
-                    <span class="opcion-texto">Arte, diseño y comunicación</span>
-                </div>
-            </a>
-
+        <div class="contenedor-opciones-test" id="contenedor-opciones-dom">
         </div>
 
     </main>

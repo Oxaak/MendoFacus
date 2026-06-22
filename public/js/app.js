@@ -13,7 +13,7 @@ class GestorUniversidades {
 
     async inicializar() {
         try {
-            const respuesta = await fetch('/api/faculties');
+            const respuesta = await fetch('/api/facultades');
             const datos = await respuesta.json();
 
             const facultades = datos.map(dato => new Facultad(dato.nombre, dato.gestion, dato.ubicacion));
