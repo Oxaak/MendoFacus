@@ -1,5 +1,21 @@
 const form = document.getElementById('formularioRegistro');
 
+async function comprobar(nombre, email) {
+    const respuesta = await fetch('http://localhost:3000/api/usuarios');
+    const datos = await respuesta.json();
+
+    datos.forEach(element => {
+        if (element.nombre == nombre) {
+            alert("El usuario ya existe")
+            return false;
+        } else if (element.email == email) {
+            alert("El email ya esta en uso")
+            return false;
+        }
+    });
+    return true;
+}
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log("andando");
@@ -9,6 +25,14 @@ form.addEventListener('submit', async (e) => {
         contraseña: document.getElementById('contraseña').value,
         email: document.getElementById('email').value,
     };
+
+    const terminos = document.getElementById('terminosCondiciones').checked;
+
+    if (!terminos) {
+        alert('Debes aceptar los terminos y condiciones');
+        return;
+    }
+    comprobar(usuario.nombre, usuario.email);
 
     try {
         const respuesta = await fetch('http://localhost:3000/api/usuarios', {
@@ -26,4 +50,6 @@ form.addEventListener('submit', async (e) => {
         console.error('Error:', error);
         alert('❌ Error al guardar el usuario');
     }
+
+
 });
