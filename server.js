@@ -34,6 +34,37 @@ app.get('/api/facultades', async (req, res) => {
     }
 });
 
+app.get('/api/usuarios', async (req, res) => {
+    try {
+        const [rows] = await poolMySQL.execute('SELECT nombre, email FROM usuarios');
+        res.json(rows);
+    } catch (error) {
+        res.status(500).json({ error: 'Fallo al obtener usuarios: ' + error.message });
+    }
+});
+
+
+app.post('/api/usuarios', async (req, res) => {
+    const { nombre, contraseña, email } = req.body;
+
+    try {
+        const [existe] = await poolMySQL.execute('SELECT * FROM usuarios WHERE nombre = ? AND email = ?', [nombre, email]);
+        if (existe.length > 0) {
+            return res.status(400).json({ error: 'El usuario ya existe' });
+        }
+        const [result] = await poolMySQL.execute(
+            'INSERT INTO usuarios (nombre, contraseña, email) VALUES (?, ?, ?)',
+            [nombre, contraseña, email]
+        );
+        res.json({
+            mensaje: 'Usuario guardado en MySQL',
+            id: result.insertId
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al registrar usuario: ' + error.message });
+    }
+});
+
 // --- Endpoints de Cuestionario ---
 
 app.get('/api/obtener-preguntas', async (req, res) => {
