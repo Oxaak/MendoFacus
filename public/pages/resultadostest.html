@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Test - MendoFacus</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/resultadostest.css">
+    <script src="../js/resultado.js" defer></script>
+</head>
+
+<body>
+
+    <header class="cabecera">
+        <h1 class="cabecera-titulo">Tus Resultados</h1>
+        <p class="cabecera-descripcion">Descubre las areas de conocimiento que mejor se adaptan a tu perfil.</p>
+    </header>
+
+    <main class="contenido-principal">
+        
+        <!-- Tarjeta del perfil ganador -->
+        <section class="seccion-ganador">
+            <div id="tarjeta-ganador-dom" class="tarjeta-ganador">
+                <!-- Se inyecta dinamicamente por JS: titulo, porcentaje, descripcion y boton -->
+            </div>
+        </section>
+
+        <!-- Seccion de otras opciones -->
+        <section class="seccion-secundaria">
+            <h2 class="subtitulo-seccion">Otras buenas opciones</h2>
+            <div id="lista-otras-opciones-dom" class="contenedor-secundario">
+                <!-- Se inyectan dinamicamente por JS las posiciones 1, 2 y 3 -->
+            </div>
+        </section>
+
+        <!-- Boton para volver a realizar el test -->
+        <div class="contenedor-acciones">
+            <a href="test.html" class="boton-secundario">Realizar el test de nuevo</a>
+        </div>
+
+    </main>
+
+    <nav class="navegacion-inferior">
+        <a href="../index.html" class="enlace-nav">Inicio</a>
+        <a href="buscar.html" class="enlace-nav">Buscar</a>
+        <a href="comparar.html" class="enlace-nav">Comparar</a>
+        <a href="perfil.html" class="enlace-nav">Perfil</a>
+    </nav>
+
+</body>
+
+</html>
