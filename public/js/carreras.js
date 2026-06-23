@@ -22,6 +22,7 @@ class GestorCarreras {
 
             const lista = await respuesta.json();
             this.renderizar(lista);
+            this.asignarEventosComparacion();
         } catch (error) {
             console.error('Fallo al obtener datos:', error);
         }
@@ -43,5 +44,36 @@ class GestorCarreras {
             `;
             this.contenedor.insertAdjacentHTML('beforeend', html);
         });
+    }
+
+    asignarEventosComparacion() {
+        const botonesComparar = this.contenedor.querySelectorAll('.btn-comparar');
+
+        botonesComparar.forEach(boton => {
+            boton.addEventListener('click', () => this.agregarCarreraAComparar(boton));
+        });
+    }
+
+    agregarCarreraAComparar(boton) {
+        const idCarrera = boton.dataset.id;
+        const carrerasGuardadas = JSON.parse(localStorage.getItem('carrerasAComparar')) || [];
+
+        if (carrerasGuardadas.includes(idCarrera)) {
+            return;
+        }
+
+        if (carrerasGuardadas.length === 2) {
+            carrerasGuardadas.shift();
+        }
+
+        carrerasGuardadas.push(idCarrera);
+        localStorage.setItem('carrerasAComparar', JSON.stringify(carrerasGuardadas));
+
+        if (carrerasGuardadas.length === 2) {
+            window.location.href = 'comparar.html';
+            return;
+        }
+
+        boton.textContent = 'Agregada';
     }
 }

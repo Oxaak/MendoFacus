@@ -25,6 +25,36 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/api/facultades', async (req, res) => {
+    try {
+        const [rows] = await poolMySQL.execute(
+            'SELECT nombre, gestion, ubicacion FROM facultades'
+        );
+
+        res.json(rows);
+    } catch (error) {
+        res.status(500).json({ error: 'Fallo al obtener facultades: ' + error.message });
+    }
+});
+
+app.get('/api/carreras/comparar/:ids', async (req, res) => {
+    const idsCarreras = req.params.ids
+        .split(',')
+        .map(id => Number(id.trim()))
+        .filter(id => Number.isInteger(id) && id > 0);
+
+    try {
+        const [rows] = await poolMySQL.query(
+            'SELECT nombre_carrera, duracion, modalidad, titulo_universitario FROM carreras WHERE id_carrera IN (?)',
+            [idsCarreras]
+        );
+
+        res.json(rows);
+    } catch (error) {
+        res.status(500).json({ error: 'Fallo al comparar carreras: ' + error.message });
+    }
+});
+
 app.get('/api/carreras/:perfil', async (req, res) => {
     const perfil = req.params.perfil;
     try {
@@ -70,36 +100,35 @@ app.post('/api/usuarios', async (req, res) => {
     }
 });
 
-app.get('/api/obtener-preguntas', async (req, res) => {
+app.get('/api/obtener-pregunta', async (req, res) => {
     try {
-        const [preguntas] = await poolMySQL.execute('SELECT id, orden, titulo, descripcion FROM preguntas ORDER BY orden');
-        const [opciones] = await poolMySQL.execute('SELECT id, pregunta_id, texto_opcion, perfil_asociado FROM opciones');
+        const [preguntas] = await poolMySQL.execute(
+            'SELECT id, titulo, descripcion FROM preguntas WHERE id = ? LIMIT 1',
+            [1]
+        );
 
-        const resultado = preguntas.map(pregunta => {
-            const opcionesPregunta = opciones
-                .filter(opcion => opcion.pregunta_id === pregunta.id)
-                .map(opcion => ({
-                    id: opcion.id,
-                    texto_opcion: opcion.texto_opcion,
-                    perfil_asociado: opcion.perfil_asociado
-                }));
+        if (preguntas.length === 0) {
+            return res.status(404).json({ error: 'Pregunta inicial no encontrada' });
+        }
 
-            return {
-                id: pregunta.id,
-                orden: pregunta.orden,
-                titulo: pregunta.titulo,
-                descripcion: pregunta.descripcion,
-                opciones: opcionesPregunta
-            };
+        const pregunta = preguntas[0];
+        const [opciones] = await poolMySQL.execute(
+            'SELECT texto_opcion, perfil_asociado FROM opciones WHERE pregunta_id = ?',
+            [pregunta.id]
+        );
+
+        res.json({
+            titulo: pregunta.titulo,
+            descripcion: pregunta.descripcion,
+            opciones: opciones.map(opcion => ({
+                texto_opcion: opcion.texto_opcion,
+                perfil_asociado: opcion.perfil_asociado
+            }))
         });
-
-        res.json(resultado);
     } catch (error) {
-        res.status(500).json({ error: 'Fallo al obtener preguntas: ' + error.message });
+        res.status(500).json({ error: 'Fallo al obtener pregunta inicial: ' + error.message });
     }
 });
-
-
 
 app.listen(PORT, () => {
     console.log(`Servidor listo en http://localhost:${PORT}`);
