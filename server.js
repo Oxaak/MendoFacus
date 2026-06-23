@@ -36,7 +36,7 @@ app.get('/api/facultades', async (req, res) => {
 
 app.get('/api/usuarios', async (req, res) => {
     try {
-        const [rows] = await poolMySQL.execute('SELECT nombre, email FROM usuarios');
+        const [rows] = await poolMySQL.execute('SELECT * FROM usuarios');
         res.json(rows);
     } catch (error) {
         res.status(500).json({ error: 'Fallo al obtener usuarios: ' + error.message });
@@ -55,6 +55,23 @@ app.post('/api/usuarios', async (req, res) => {
         const [result] = await poolMySQL.execute(
             'INSERT INTO usuarios (nombre, contraseña, email) VALUES (?, ?, ?)',
             [nombre, contraseña, email]
+        );
+        res.json({
+            mensaje: 'Usuario guardado en MySQL',
+            id: result.insertId
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al registrar usuario: ' + error.message });
+    }
+});
+
+app.post('/api/login', async (req, res) => {
+    const { nombre, contraseña } = req.body;
+
+    try {
+        const [result] = await poolMySQL.execute(
+            'INSERT INTO login (nombre, contraseña) VALUES (?, ?)',
+            [nombre, contraseña]
         );
         res.json({
             mensaje: 'Usuario guardado en MySQL',
