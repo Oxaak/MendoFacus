@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - MendoFacus</title>
+    <meta name="description"
+        content="Inicia sesión o regístrate en MendoFacus para gestionar tu perfil vocacional y explorar universidades.">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/perfil.js" defer></script>
+</head>
+
+<body>
+
+    <div class="contenedor-movil-perfil" id="perfilContenedor">
+
+        <header class="cabecera-perfil">
+            <h1 class="titulo-perfil">Perfil</h1>
+        </header>
+
+        <main class="contenido-perfil">
+
+            <section class="seccion-usuario" aria-labelledby="usuario-titulo">
+                <h2 id="usuario-titulo" class="sr-only" style="display:none;">Información de Cuenta</h2>
+
+                <div class="marcador-perfil">
+                    <svg class="icono-usuario-silueta" viewBox="0 0 24 24" width="72" height="72" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" fill="#000000" />
+                        <circle cx="12" cy="8.5" r="3" fill="#ffffff" />
+                        <path d="M6 18c0-2.5 2.5-4 6-4s6 1.5 6 4" fill="#ffffff" />
+                    </svg>
+                </div>
+
+                <p id="texto" class="texto-descriptivo">Inicia sesión o Regístrate para iniciar</p>
+            </section>
+
+            <section class="contenedor-botones" aria-label="Acciones de sesión">
+                <button type="button" class="boton-perfil" id="btnIniciarSesion"
+                    onclick="window.location.href='login.html'">INICIAR SESION</button>
+                <button type="button" class="boton-perfil" id="btnRegistrarse"
+                    onclick="window.location.href='registro.html'">REGISTRARSE</button>
+            </section>
+
+        </main>
+
+        <nav class="navegacion-inferior">
+            <a href="../index.html" class="enlace-nav activo">Inicio</a>
+            <a href="buscar.html" class="enlace-nav">Buscar</a>
+            <a href="comparar.html" class="enlace-nav">Comparar</a>
+            <a href="perfil.html" class="enlace-nav">Perfil</a>
+        </nav>
+
+
+
+    </div>
+
+</body>
+
+</html>

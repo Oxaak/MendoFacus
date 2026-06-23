@@ -1,20 +1,16 @@
-const form = document.getElementById('formularioRegistro');
+const form = document.getElementById('formularioLogin');
 
-async function comprobar(nombre, email) {
+async function comprobar(nombre, contraseña) {
     const respuesta = await fetch('http://localhost:3000/api/usuarios');
     const datos = await respuesta.json();
-
     datos.forEach(element => {
-        if (element.nombre == nombre) {
-            alert("El usuario ya existe")
-            return false;
-        } else if (element.email == email) {
-            alert("El email ya esta en uso")
-            return false;
+        if (element.nombre == nombre && element.contraseña == contraseña) {
+            return true;
         }
     });
-    return true;
+    return false;
 }
+
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -23,32 +19,14 @@ form.addEventListener('submit', async (e) => {
     const usuario = {
         nombre: document.getElementById('nombre').value,
         contraseña: document.getElementById('contraseña').value,
-        email: document.getElementById('email').value,
     };
 
-    const terminos = document.getElementById('terminosCondiciones').checked;
+    if (comprobar(usuario.nombre, usuario.contraseña)) {
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+        window.location.href = '../pages/perfil.html';
 
-    if (!terminos) {
-        alert('Debes aceptar los terminos y condiciones');
-        return;
-    }
-    comprobar(usuario.nombre, usuario.email);
-
-    try {
-        const respuesta = await fetch('http://localhost:3000/api/usuarios', {
-            method: 'POST',  // Método HTTP
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(usuario)  // Convertir a JSON
-        });
-
-        if (respuesta.ok) {
-            alert('✅ Usuario guardado exitosamente!');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('❌ Error al guardar el usuario');
+    } else {
+        console.log('Usuario no encontrado');
     }
 
 
