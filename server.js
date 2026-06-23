@@ -65,22 +65,6 @@ app.post('/api/usuarios', async (req, res) => {
     }
 });
 
-app.post('/api/login', async (req, res) => {
-    const { nombre, contraseña } = req.body;
-
-    try {
-        const [result] = await poolMySQL.execute(
-            'INSERT INTO login (nombre, contraseña) VALUES (?, ?)',
-            [nombre, contraseña]
-        );
-        res.json({
-            mensaje: 'Usuario guardado en MySQL',
-            id: result.insertId
-        });
-    } catch (error) {
-        res.status(500).json({ error: 'Error al registrar usuario: ' + error.message });
-    }
-});
 
 // --- Endpoints de Cuestionario ---
 
