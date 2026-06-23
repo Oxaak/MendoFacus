@@ -370,3 +370,166 @@ body {
     table-layout: fixed;
     z-index: 100;
 }
+
+/* --- Sección: Cabecera con Navegación y Botón de Volver --- */
+.cabecera-navegacion {
+    background-color: #ffffff;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cabecera-superior {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.boton-volver {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111111;
+    text-decoration: none;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.boton-volver:hover {
+    transform: translateX(-2px);
+}
+
+.icono-volver-svg {
+    width: 24px;
+    height: 24px;
+    stroke: #000000;
+}
+
+.cabecera-titulo-seccion {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111111;
+    margin: 0;
+}
+
+/* --- Sección: Tarjetas de Carreras --- */
+.contenedor-tarjetas-carreras {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.tarjeta-carrera {
+    background-color: #e6f0fa;
+    border: 1px solid #cbdbe6;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-carrera:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 86, 179, 0.1);
+}
+
+.carrera-titulo {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111111;
+    margin: 0;
+}
+
+.etiqueta-gestion {
+    align-self: flex-start;
+    background-color: #0056b3;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.carrera-ubicacion {
+    font-size: 13px;
+    color: #555555;
+    margin: 0;
+}
+
+.btn-comparar {
+    background-color: #ffffff;
+    color: #0056b3;
+    border: 1px solid #0056b3;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+.btn-comparar:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+
+.btn-comparar:active {
+    transform: scale(0.97);
+}
+
+/* --- Sección: Catálogo de Carreras --- */
+.titulo-catalogo-centrado {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111111;
+    margin: 16px 0 8px 0;
+}
+
+.linea-separadora {
+    border: 0;
+    height: 1px;
+    background-color: #cbdbe6;
+    margin-bottom: 24px;
+}
+
+.contenedor-tarjetas-navegacion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 8px;
+}
+
+.tarjeta-navegacion {
+    display: flex;
+    align-items: center;
+    background-color: #eaeaea; /* Gris claro */
+    border-left: 8px solid #0056b3; /* Acento azul sólido */
+    border-radius: 8px;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: #111111;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-navegacion:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-navegacion:active {
+    transform: translateY(0);
+}

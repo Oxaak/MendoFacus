@@ -25,14 +25,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/api/facultades', async (req, res) => {
+app.get('/api/carreras/:perfil', async (req, res) => {
+    const perfil = req.params.perfil;
     try {
-        const [rows] = await poolMySQL.execute('SELECT nombre, gestion, ubicacion FROM facultades');
+        const [rows] = await poolMySQL.execute(
+            'SELECT id_carrera, nombre_carrera, perfil_asociado FROM carreras WHERE perfil_asociado = ?',
+            [perfil]
+        );
         res.json(rows);
     } catch (error) {
-        res.status(500).json({ error: 'Fallo al obtener facultades: ' + error.message });
+        res.status(500).json({ error: 'Fallo al obtener carreras: ' + error.message });
     }
 });
+
 
 app.get('/api/usuarios', async (req, res) => {
     try {
@@ -64,8 +69,6 @@ app.post('/api/usuarios', async (req, res) => {
         res.status(500).json({ error: 'Error al registrar usuario: ' + error.message });
     }
 });
-
-// --- Endpoints de Cuestionario ---
 
 app.get('/api/obtener-preguntas', async (req, res) => {
     try {

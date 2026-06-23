@@ -96,7 +96,7 @@ class GestorResultados {
 
             const botonCarreras = document.createElement("a");
             botonCarreras.className = "boton-principal boton-carreras";
-            botonCarreras.href = "catalogo.html";
+            botonCarreras.href = `${ganador.clave}.html`;
             botonCarreras.textContent = "Ver carreras";
 
             this.tarjetaGanadorDom.appendChild(titulo);
