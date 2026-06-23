@@ -36,7 +36,7 @@ app.get('/api/facultades', async (req, res) => {
 
 app.get('/api/usuarios', async (req, res) => {
     try {
-        const [rows] = await poolMySQL.execute('SELECT nombre, email FROM usuarios');
+        const [rows] = await poolMySQL.execute('SELECT * FROM usuarios');
         res.json(rows);
     } catch (error) {
         res.status(500).json({ error: 'Fallo al obtener usuarios: ' + error.message });
@@ -64,6 +64,7 @@ app.post('/api/usuarios', async (req, res) => {
         res.status(500).json({ error: 'Error al registrar usuario: ' + error.message });
     }
 });
+
 
 // --- Endpoints de Cuestionario ---
 
