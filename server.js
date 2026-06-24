@@ -37,24 +37,6 @@ app.get('/api/facultades', async (req, res) => {
     }
 });
 
-app.get('/api/carreras/comparar/:ids', async (req, res) => {
-    const idsCarreras = req.params.ids
-        .split(',')
-        .map(id => Number(id.trim()))
-        .filter(id => Number.isInteger(id) && id > 0);
-
-    try {
-        const [rows] = await poolMySQL.query(
-            'SELECT nombre_carrera, duracion, modalidad, titulo_universitario FROM carreras WHERE id_carrera IN (?)',
-            [idsCarreras]
-        );
-
-        res.json(rows);
-    } catch (error) {
-        res.status(500).json({ error: 'Fallo al comparar carreras: ' + error.message });
-    }
-});
-
 app.get('/api/carreras/:perfil', async (req, res) => {
     const perfil = req.params.perfil;
     try {
@@ -77,7 +59,6 @@ app.get('/api/usuarios', async (req, res) => {
         res.status(500).json({ error: 'Fallo al obtener usuarios: ' + error.message });
     }
 });
-
 
 app.post('/api/usuarios', async (req, res) => {
     const { nombre, contraseña, email } = req.body;

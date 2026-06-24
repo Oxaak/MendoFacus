@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', iniciarResultado);
 
 const tarjetaGanadorDom = document.getElementById('tarjeta-ganador-dom');
-const listaOtrasOpcionesDom = document.getElementById('lista-otras-opciones-dom');
 
 const resultadosPorPerfil = {
     tecnologia_exactas: {
@@ -51,8 +50,4 @@ function renderizarResultado(perfilSeleccionado) {
         <p class="ganador-descripcion">${resultado.descripcion}</p>
         <a href="${resultado.enlace}" class="boton-principal boton-carreras">Ver carreras recomendadas</a>
     `;
-
-    if (listaOtrasOpcionesDom) {
-        listaOtrasOpcionesDom.innerHTML = '';
-    }
 }
