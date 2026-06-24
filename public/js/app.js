@@ -33,7 +33,7 @@ class GestorUniversidades {
 
         facultadesFiltradas.forEach((facultad) => {
             const tarjetaEnlace = document.createElement("a");
-            tarjetaEnlace.href = "pages/universidad.html";
+            tarjetaEnlace.href = "pages/meme.html";
             tarjetaEnlace.className = "tarjeta-universidad";
 
             const tituloElemento = document.createElement("h3");
